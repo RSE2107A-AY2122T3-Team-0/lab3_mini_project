@@ -1,0 +1,4 @@
+<launch>
+    <node name="limo_status_translator_node" pkg="lab3_mini_project" type="limo_status_translator_node.py" output="screen"/>
+    <node name="limo_status_client_node" pkg="lab3_mini_project" type="limo_status_client_node.py" output="screen"/>
+</launch>
