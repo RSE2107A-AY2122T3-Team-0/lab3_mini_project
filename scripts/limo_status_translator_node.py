@@ -42,25 +42,25 @@ def limo_status_callback(msg):
         status_strings[GetLimoStatusRequest.GET_STATUS_MOTION_MODE] = "Vehicle in mecanum motion mode"
 
     # Process error codes
-    status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] = "Error codes present:\n"
+    status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] = "Error codes present: "
     if msg.error_code & 0b0000000001: # check first bit
-        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Battery under-voltage fault\n"
+        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Battery under-voltage fault "
     elif msg.error_code & 0b0000000010:
-        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Battery under-voltage warning\n"
+        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Battery under-voltage warning "
     elif msg.error_code & 0b0000000100:
-        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Remote connection loss\n"
+        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Remote connection loss "
     elif msg.error_code & 0b0000001000:
-        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Motor 1 communication failure\n"
+        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Motor 1 communication failure "
     elif msg.error_code & 0b0000010000:
-        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Motor 2 communication failure\n"
+        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Motor 2 communication failure "
     elif msg.error_code & 0b0000100000:
-        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Motor 3 communication failure\n"
+        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Motor 3 communication failure "
     elif msg.error_code & 0b0001000000:
-        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Motor 4 communication failure\n"
+        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Motor 4 communication failure "
     elif msg.error_code & 0b0100000000:
-        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Motor driver failure\n"
+        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Motor driver failure "
     elif msg.error_code & 0b1000000000:
-        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Upper layer communication failure\n"
+        status_strings[GetLimoStatusRequest.GET_STATUS_ERROR_CODE] += "Upper layer communication failure "
 
 if __name__ == "__main__":
     rospy.init_node("limo_status_translator_node")
