@@ -5,8 +5,8 @@ from lab3_mini_project.srv import GetLimoStatus, GetLimoStatusRequest, GetLimoSt
 from std_msgs.msg import String
 
 def publish_status_strings():
-    # To store our publishers
-    publishers = [None] * 5
+    # Dictionary to store our publishers
+    publishers = {}
 
     # Create and initialize the publishers using the srv constants
     publishers[GetLimoStatusRequest.GET_STATUS_VEHICLE_STATE] = rospy.Publisher("/limo_status/vehicle_state", String, queue_size=1)
@@ -22,9 +22,9 @@ def publish_status_strings():
     rate = rospy.Rate(1)
 
     while not rospy.is_shutdown():
-        for i in range(5):
-            res = get_status_string(i) 
-            publishers[i].publish(res.status_string)
+        for key, pub in publishers.items():
+            res = get_status_string(key) 
+            pub.publish(res.status_string)
         rate.sleep()
 
 
